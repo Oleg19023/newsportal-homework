@@ -162,7 +162,7 @@
 })(jQuery);
 
 // Media API Breaking News
-const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=b86ec97f0d174ec5a4fcfd10bf43c17f`;
+const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=b86ec97f0d174ec5a4fcfd10bf43c17f`; // API KEY
 fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -192,7 +192,7 @@ fetch(url)
             if (index < carouselItems.length) {
                 const carouselItem = carouselItems[index];
                 const img = carouselItem.querySelector('img');
-                img.src = newsItem.urlToImage;
+                img.src = newsItem.urlToImage ? newsItem.urlToImage : 'img/default.png';
                 const badge = carouselItem.querySelector('.badge');
                 badge.href = newsItem.url;
                 badge.textContent = newsItem.source.name;
@@ -216,7 +216,7 @@ fetch(url)
             if (index < newsItems.length) {
                 const newsItemDiv = newsItems[index];
                 const img = newsItemDiv.querySelector('img');
-                img.src = newsItem.urlToImage;
+                img.src = newsItem.urlToImage ? newsItem.urlToImage : 'img/default.png';
                 const badge = newsItemDiv.querySelector('.badge');
                 badge.href = newsItem.url;
                 badge.textContent = newsItem.source.name;
@@ -240,7 +240,7 @@ fetch(url)
             if (index < newsCarouselItems.length) {
                 const carouselItem = newsCarouselItems[index];
                 const img = carouselItem.querySelector('img');
-                img.src = newsItem.urlToImage;
+                img.src = newsItem.urlToImage ? newsItem.urlToImage : 'img/default.png';
                 const badge = carouselItem.querySelector('.badge');
                 badge.href = newsItem.url;
                 badge.textContent = newsItem.source.name;
@@ -255,8 +255,6 @@ fetch(url)
     })
     .catch(error => console.error('Error:', error));
 
-// Media API
-
 fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -265,7 +263,7 @@ fetch(url)
             if (index < newsItems.length) {
                 const newsItemDiv = newsItems[index];
                 const img = newsItemDiv.querySelector('img');
-                img.src = newsItem.urlToImage;
+                img.src = newsItem.urlToImage ? newsItem.urlToImage : 'img/default.png';
                 const badge = newsItemDiv.querySelector('.badge');
                 badge.href = newsItem.url;
                 badge.textContent = newsItem.source.name;
@@ -280,7 +278,6 @@ fetch(url)
     })
     .catch(error => console.error('Error:', error));
 
-// Media API
 fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -289,7 +286,7 @@ fetch(url)
             if (index < newsItems.length) {
                 const newsItemDiv = newsItems[index];
                 const img = newsItemDiv.querySelector('img');
-                img.src = newsItem.urlToImage;
+                img.src = newsItem.urlToImage ? newsItem.urlToImage : 'img/default.png';
                 const badge = newsItemDiv.querySelector('.badge');
                 badge.href = newsItem.url;
                 badge.textContent = newsItem.source.name;
@@ -305,6 +302,62 @@ fetch(url)
         });
     })
     .catch(error => console.error('Error:', error));
+
+// Media API TRANDING NEWS
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        const newsItems = document.querySelectorAll('.d-flex.align-items-center.bg-white.mb-3');
+        data.articles.forEach((newsItem, index) => {
+            if (index < newsItems.length) {
+                const newsItemDiv = newsItems[index];
+                const badge = newsItemDiv.querySelector('.badge');
+                badge.href = newsItem.url;
+                badge.textContent = newsItem.source.name;
+                const date = newsItemDiv.querySelector('.text-body');
+                date.href = newsItem.url;
+                date.textContent = new Date(newsItem.publishedAt).toLocaleDateString();
+                const title = newsItemDiv.querySelector('.h6');
+                title.href = newsItem.url;
+                title.textContent = newsItem.title;
+            }
+        });
+    })
+    .catch(error => console.error('Error:', error));
+
+// Media API
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        const newsItems = document.querySelectorAll('.col-lg-3.col-md-6.mb-5 .mb-3 ');
+        data.articles.forEach((newsItem, index) => {
+            if (index < newsItems.length) {
+                const newsItemDiv = newsItems[index];
+                const badge = newsItemDiv.querySelector('.badge');
+                if (badge) {
+                    badge.href = newsItem.url;
+                    badge.textContent = newsItem.source.name;
+                }
+                const date = newsItemDiv.querySelector('.text-body');
+                if (date) {
+                    date.href = newsItem.url;
+                    date.textContent = new Date(newsItem.publishedAt).toLocaleDateString();
+                }
+                const title = newsItemDiv.querySelector('.small');
+                if (title) {
+                    title.href = newsItem.url;
+                    title.textContent = newsItem.title;
+                }
+            }
+        });
+    })
+    .catch(error => console.error('Error:', error));
+
+
+
+
+
+
 
 
 

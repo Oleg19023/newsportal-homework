@@ -191,6 +191,18 @@ img {
   border-style: none;
 }
 
+.imgfeatured {
+  max-height: 80px;
+}
+
+.textfeatured {
+  font-size: 15px !important;
+}
+
+.padding-bottom-10 {
+  padding-bottom: 10px;
+}
+
 svg {
   overflow: hidden;
   vertical-align: middle;
