@@ -161,29 +161,8 @@
     
 })(jQuery);
 
-// Media API Breaking News
-const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=b86ec97f0d174ec5a4fcfd10bf43c17f`; // API KEY
-fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        const breakingNewsCarousel = document.querySelector('.tranding-carousel');
-        data.articles.forEach((newsItem, index) => {
-            if (index < 1) {
-                const breakingNewsDiv = document.createElement('div');
-                breakingNewsDiv.className = 'text-truncate';
-                const breakingNewsLink = document.createElement('a');
-                breakingNewsLink.className = 'text-white text-uppercase font-weight-semi-bold';
-                breakingNewsLink.href = newsItem.url;
-                breakingNewsLink.textContent = newsItem.title;
-                breakingNewsDiv.appendChild(breakingNewsLink);
-                breakingNewsCarousel.appendChild(breakingNewsDiv);
-            }
-        });
-    })
-    .catch(error => console.error('Error:', error));
-
-
 // Media API Main News
+const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=b86ec97f0d174ec5a4fcfd10bf43c17f`; // API KEY
 fetch(url)
     .then(response => response.json())
     .then(data => {
